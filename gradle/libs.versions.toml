@@ -1,0 +1,49 @@
+[versions]
+
+# app config
+compileSdk = "34"
+minSdk = "24"
+targetSdk = "34"
+
+#core
+core-ktx = "1.13.1"
+
+#presentation
+appcompat = "1.7.0"
+constraintlayout = "2.1.4"
+material = "1.12.0"
+
+#navigation
+navigation = "2.7.7"
+
+#tests
+androidx-junit = "1.2.1"
+junit = "4.13.2"
+espresso-core = "3.6.1"
+
+#plugins
+app = "8.2.0"
+org-jetbrains-kotlin-android = "1.9.10"
+
+[libraries]
+
+#core
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
+
+#presentation
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+
+#navigation
+navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation" }
+navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation" }
+
+#tests
+androidx-junit = { group = "androidx.test.ext", name ="junit", version.ref = "androidx-junit" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "app" }
+org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin-android" }
