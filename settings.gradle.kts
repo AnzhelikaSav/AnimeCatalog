@@ -15,3 +15,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "Anime Catalog"
 include(":app")
+include(":data")
+include(":domain")
