@@ -29,6 +29,9 @@ okhttpVersion = "4.12.0"
 #coroutines
 kotlinx-coroutines = "1.7.3"
 
+#room
+roomVersion = "2.6.1"
+
 #tests
 androidx-junit = "1.2.1"
 junit = "4.13.2"
@@ -38,6 +41,7 @@ espresso-core = "3.6.1"
 app = "8.2.0"
 org-jetbrains-kotlin-android = "1.9.10"
 org-jetbrains-kotlin-jvm = "1.9.10"
+devtools-ksp = "1.9.10-1.0.13"
 
 [libraries]
 
@@ -68,6 +72,11 @@ logging-interceptor = {group = "com.squareup.okhttp3", name = "logging-intercept
 #coroutines
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
 
+#room
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "roomVersion" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomVersion" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomVersion" }
+
 #tests
 androidx-junit = { group = "androidx.test.ext", name ="junit", version.ref = "androidx-junit" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -78,3 +87,4 @@ android-application = { id = "com.android.application", version.ref = "app" }
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin-android" }
 androidLibrary = { id = "com.android.library", version.ref = "app" }
 org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin-jvm" }
+devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "devtools-ksp" }

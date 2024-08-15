@@ -12,7 +12,7 @@ import com.example.animecatalog.databinding.FragmentAnimeTopListBinding
 import com.example.animecatalog.navigation.Router
 import javax.inject.Inject
 
-class AnimeTopListFragment: Fragment(R.layout.fragment_anime_top_list) {
+class AnimeTopListFragment : Fragment(R.layout.fragment_anime_top_list) {
 
     @Inject
     lateinit var router: Router
@@ -34,11 +34,28 @@ class AnimeTopListFragment: Fragment(R.layout.fragment_anime_top_list) {
         binding = FragmentAnimeTopListBinding.bind(view)
 
         viewModel.getTopAnime()
+
+        setupToolbar()
         setupAdapter()
     }
 
+    private fun setupToolbar() {
+        binding.toolbar.inflateMenu(R.menu.menu_main)
+        binding.toolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.action_favorites -> {
+                    true
+                }
+                R.id.action_search -> {
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
     private fun setupAdapter() {
-        val adapter = AnimeAdapter()
+        val adapter = AnimeAdapter(::navigateToDetails)
         val decoration = SpaceItemDecoration(
             spaceSize = resources.getDimensionPixelSize(
                 R.dimen.padding_12
@@ -50,5 +67,11 @@ class AnimeTopListFragment: Fragment(R.layout.fragment_anime_top_list) {
         viewModel.animeList.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
+    }
+
+    private fun navigateToDetails(id: Int) {
+        val direction =
+            AnimeTopListFragmentDirections.actionAnimeTopListFragmentToAnimeDetailsFragment(id)
+        router.navigateTo(direction)
     }
 }

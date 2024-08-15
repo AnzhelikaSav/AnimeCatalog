@@ -14,5 +14,7 @@ data class AnimeModel(
     @SerializedName("year")
     val year: Int,
     @SerializedName("genres")
-    val genres: List<GenreModel>
+    val genres: List<GenreModel>,
+    @SerializedName("synopsis")
+    val synopsis: String
 )

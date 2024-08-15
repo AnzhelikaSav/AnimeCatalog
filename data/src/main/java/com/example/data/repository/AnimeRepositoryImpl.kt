@@ -15,4 +15,8 @@ class AnimeRepositoryImpl @Inject constructor(
     override suspend fun getTopAnime(): List<Anime> = withContext(dispatcher) {
         animeApi.getTopAnime().data.map { it.toDomain() }
     }
+
+    override suspend fun getAnimeDetails(id: Int): Anime = withContext(dispatcher) {
+        animeApi.getAnime(id).data.toDomain()
+    }
 }

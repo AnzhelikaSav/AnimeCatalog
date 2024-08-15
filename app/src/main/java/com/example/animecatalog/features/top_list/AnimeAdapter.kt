@@ -7,9 +7,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.example.animecatalog.databinding.ItemAnimeCardBinding
+import com.example.animecatalog.toRating
 import com.example.domain.models.Anime
 
-class AnimeAdapter: ListAdapter<Anime, AnimeAdapter.Holder>(DiffCallback()) {
+class AnimeAdapter(
+    private val onItemClick: (Int) -> Unit
+): ListAdapter<Anime, AnimeAdapter.Holder>(DiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         return Holder(
             binding = ItemAnimeCardBinding.inflate(
@@ -33,7 +36,11 @@ class AnimeAdapter: ListAdapter<Anime, AnimeAdapter.Holder>(DiffCallback()) {
                 tvTitle.text = anime.title
                 tvYear.text = if (anime.year > 0) anime.year.toString() else ""
                 tvGenres.text = anime.genres.joinToString(", ")
-                rbScore.rating = (anime.score / 2).toFloat()
+                rbScore.rating = anime.score.toRating()
+
+                root.setOnClickListener {
+                    onItemClick(anime.id)
+                }
             }
         }
     }

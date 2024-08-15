@@ -7,5 +7,17 @@
     <fragment
         android:id="@+id/animeTopListFragment"
         android:name="com.example.animecatalog.features.top_list.AnimeTopListFragment"
-        android:label="AnimeTopListFragment" />
+        android:label="AnimeTopListFragment" >
+        <action
+            android:id="@+id/action_animeTopListFragment_to_animeDetailsFragment"
+            app:destination="@id/animeDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/animeDetailsFragment"
+        android:name="com.example.animecatalog.features.details.AnimeDetailsFragment"
+        android:label="AnimeDetailsFragment" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
 </navigation>
