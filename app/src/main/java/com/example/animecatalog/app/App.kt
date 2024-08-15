@@ -11,7 +11,9 @@ class App: Application() {
 
     private fun setupDagger() {
         val appComponent = DaggerAppComponent
-            .create()
+            .builder()
+            .addContext(this)
+            .build()
         DiProvider.appComponent = appComponent
     }
 }

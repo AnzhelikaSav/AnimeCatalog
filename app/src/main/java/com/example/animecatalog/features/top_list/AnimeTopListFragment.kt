@@ -44,9 +44,11 @@ class AnimeTopListFragment : Fragment(R.layout.fragment_anime_top_list) {
         binding.toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_favorites -> {
+                    navigateToFavorites()
                     true
                 }
                 R.id.action_search -> {
+                    navigateToSearch()
                     true
                 }
                 else -> false
@@ -73,5 +75,15 @@ class AnimeTopListFragment : Fragment(R.layout.fragment_anime_top_list) {
         val direction =
             AnimeTopListFragmentDirections.actionAnimeTopListFragmentToAnimeDetailsFragment(id)
         router.navigateTo(direction)
+    }
+
+    private fun navigateToFavorites() {
+        val direction =
+            AnimeTopListFragmentDirections.actionAnimeTopListFragmentToFavoriteAnimeFragment()
+        router.navigateTo(direction)
+    }
+
+    private fun navigateToSearch() {
+
     }
 }

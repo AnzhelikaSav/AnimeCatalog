@@ -57,6 +57,8 @@ dependencies {
     implementation(libs.logging.interceptor)
     implementation(libs.retrofit.converter.json)
 
+    implementation(libs.androidx.room.runtime)
+
     implementation(libs.navigation.fragment.ktx)
     implementation(libs.navigation.ui.ktx)
 

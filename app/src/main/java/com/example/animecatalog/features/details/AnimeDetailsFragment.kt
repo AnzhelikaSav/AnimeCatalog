@@ -39,8 +39,24 @@ class AnimeDetailsFragment: Fragment(R.layout.fragment_anime_details) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAnimeDetailsBinding.bind(view)
 
+        setObservers()
+        setListeners()
+    }
+
+    private fun setObservers() {
         viewModel.anime.observe(viewLifecycleOwner) {
             setInfo(it)
+        }
+
+        viewModel.isFavorite.observe(viewLifecycleOwner) { isFavorite ->
+            val resId = if (isFavorite) R.drawable.ic_favorite else R.drawable.ic_favorite_border
+            binding.fabFavorite.setImageResource(resId)
+        }
+    }
+
+    private fun setListeners() {
+        binding.fabFavorite.setOnClickListener {
+            addToFavoritesClick()
         }
     }
 
@@ -55,5 +71,9 @@ class AnimeDetailsFragment: Fragment(R.layout.fragment_anime_details) {
             rbScore.rating = anime.score.toRating()
             tvSynopsis.text = anime.synopsis
         }
+    }
+
+    private fun addToFavoritesClick() {
+        viewModel.onAddToFavoritesClick()
     }
 }
