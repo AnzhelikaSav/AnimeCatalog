@@ -47,10 +47,12 @@ class AnimeTopListFragment : Fragment(R.layout.fragment_anime_top_list) {
                     navigateToFavorites()
                     true
                 }
+
                 R.id.action_search -> {
                     navigateToSearch()
                     true
                 }
+
                 else -> false
             }
         }
@@ -84,6 +86,8 @@ class AnimeTopListFragment : Fragment(R.layout.fragment_anime_top_list) {
     }
 
     private fun navigateToSearch() {
-
+        val direction =
+            AnimeTopListFragmentDirections.actionAnimeTopListFragmentToSearchAnimeFragment()
+        router.navigateTo(direction)
     }
 }
