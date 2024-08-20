@@ -3,7 +3,12 @@
     <style name="Base.Theme.AnimeCatalog" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="actionOverflowButtonStyle">@style/OverflowButtonStyle</item>
     </style>
 
     <style name="Theme.AnimeCatalog" parent="Base.Theme.AnimeCatalog" />
+    
+    <style name="OverflowButtonStyle" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:tint">?attr/colorOnPrimary</item>
+    </style>
 </resources>

@@ -1,12 +1,12 @@
 package com.example.data.mappers
 
 import com.example.data.database.entities.FavoriteEntity
-import com.example.data.network.models.AnimeModel
+import com.example.data.network.models.AnimeNetwork
 import com.example.domain.models.Anime
 
 private const val SEPARATOR = " "
 
-fun AnimeModel.toDomain(): Anime {
+fun AnimeNetwork.toDomain(): Anime {
     return Anime(
         id = this.id,
         imageUrl = this.images.jpg.imageUrl,

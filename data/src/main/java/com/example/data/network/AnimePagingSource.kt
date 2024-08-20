@@ -3,20 +3,20 @@ package com.example.data.network
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.data.network.api.AnimeApi
-import com.example.data.network.models.AnimeModel
+import com.example.data.network.models.AnimeNetwork
 import javax.inject.Inject
 
 class AnimePagingSource @Inject constructor(
     private val animeApi: AnimeApi
-) : PagingSource<Int, AnimeModel>()  {
+) : PagingSource<Int, AnimeNetwork>()  {
 
-    override fun getRefreshKey(state: PagingState<Int, AnimeModel>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, AnimeNetwork>): Int? {
         val anchorPosition = state.anchorPosition ?: return null
         val page = state.closestPageToPosition(anchorPosition) ?: return null
         return page.prevKey?.plus(1) ?: page.nextKey?.minus(1)
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, AnimeModel> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, AnimeNetwork> {
         return try {
             val page = params.key ?: STARTING_KEY
             val response = animeApi.getTopAnime(page)

@@ -15,7 +15,6 @@ class AnimeTopListViewModel(
     val animeFlow = getTopAnimeUseCase
         .execute()
         .cachedIn(viewModelScope)
-
 }
 
 class AnimeTopListViewModelFactory @Inject constructor(

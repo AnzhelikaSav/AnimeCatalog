@@ -16,7 +16,7 @@
             android:background="?attr/colorPrimary"
             app:navigationIcon="@drawable/ic_arrow_back"
             app:title="@string/favorites"
-            app:titleTextColor="?attr/colorOnPrimary"/>
+            app:titleTextColor="?attr/colorOnPrimary" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
