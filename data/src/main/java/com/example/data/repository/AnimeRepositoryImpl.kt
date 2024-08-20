@@ -1,8 +1,13 @@
 package com.example.data.repository
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.map
 import com.example.data.database.dao.FavoritesDao
 import com.example.data.mappers.toDatabase
 import com.example.data.mappers.toDomain
+import com.example.data.network.AnimePagingSource
 import com.example.data.network.api.AnimeApi
 import com.example.domain.models.Anime
 import com.example.domain.repository.AnimeRepository
@@ -13,14 +18,23 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
+private const val PAGE_SIZE = 25
+
 class AnimeRepositoryImpl @Inject constructor(
     private val animeApi: AnimeApi,
+    private val pagingSource: AnimePagingSource,
     private val favoritesDao: FavoritesDao,
     private val dispatcher: CoroutineDispatcher
 ) : AnimeRepository {
-    override suspend fun getTopAnime(): List<Anime> = withContext(dispatcher) {
-        animeApi.getTopAnime().data.map { it.toDomain() }
-    }
+
+    override fun getTopAnimeFlow(): Flow<PagingData<Anime>> = Pager(
+        PagingConfig(PAGE_SIZE)
+    ) {
+        pagingSource
+    }.flow
+        .map { pagingData ->
+            pagingData.map { it.toDomain() }
+        }
 
     override suspend fun getAnimeDetails(id: Int): Anime = withContext(dispatcher) {
         animeApi.getAnime(id).data.toDomain()

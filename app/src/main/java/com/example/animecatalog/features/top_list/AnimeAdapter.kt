@@ -2,8 +2,8 @@ package com.example.animecatalog.features.top_list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.example.animecatalog.databinding.ItemAnimeCardBinding
@@ -12,7 +12,7 @@ import com.example.domain.models.Anime
 
 class AnimeAdapter(
     private val onItemClick: (Int) -> Unit
-): ListAdapter<Anime, AnimeAdapter.Holder>(DiffCallback()) {
+): PagingDataAdapter<Anime, AnimeAdapter.Holder>(DiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         return Holder(
             binding = ItemAnimeCardBinding.inflate(
@@ -28,18 +28,20 @@ class AnimeAdapter(
     }
 
     inner class Holder(private val binding: ItemAnimeCardBinding) : ViewHolder(binding.root) {
-        fun bind(anime: Anime) {
-            binding.apply {
-                Glide.with(root)
-                    .load(anime.imageUrl)
-                    .into(ivImage)
-                tvTitle.text = anime.title
-                tvYear.text = if (anime.year > 0) anime.year.toString() else ""
-                tvGenres.text = anime.genres.joinToString(", ")
-                rbScore.rating = anime.score.toRating()
+        fun bind(anime: Anime?) {
+            anime?.let {
+                binding.apply {
+                    Glide.with(root)
+                        .load(anime.imageUrl)
+                        .into(ivImage)
+                    tvTitle.text = anime.title
+                    tvYear.text = if (anime.year > 0) anime.year.toString() else ""
+                    tvGenres.text = anime.genres.joinToString(", ")
+                    rbScore.rating = anime.score.toRating()
 
-                root.setOnClickListener {
-                    onItemClick(anime.id)
+                    root.setOnClickListener {
+                        onItemClick(anime.id)
+                    }
                 }
             }
         }

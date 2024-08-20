@@ -7,8 +7,8 @@ data class AnimeModel(
     val id: Int,
     @SerializedName("images")
     val images: ImageModel,
-    @SerializedName("title_english")
-    val title: String,
+    @SerializedName("titles")
+    val titles: List<TitleModel>,
     @SerializedName("score")
     val score: Double,
     @SerializedName("year")

@@ -11,7 +11,8 @@ fun AnimeModel.toDomain(): Anime {
         id = this.id,
         imageUrl = this.images.jpg.imageUrl,
         largeImageUrl = this.images.jpg.largeImageUrl,
-        title = this.title,
+        title = this.titles.firstOrNull { it.type == "Default" }?.title ?:
+            this.titles.first { it.title.isNotEmpty() }.title,
         score = this.score,
         year = this.year,
         genres = this.genres.map { it.name },

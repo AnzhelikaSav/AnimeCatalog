@@ -44,6 +44,8 @@ dependencies {
     implementation(libs.logging.interceptor)
     implementation(libs.retrofit.converter.json)
 
+    implementation(libs.paging)
+
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
