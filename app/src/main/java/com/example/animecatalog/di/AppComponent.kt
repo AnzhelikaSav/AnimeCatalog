@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.animecatalog.MainActivity
 import com.example.animecatalog.features.details.AnimeDetailsFragment
 import com.example.animecatalog.features.favorites.FavoritesAnimeFragment
+import com.example.animecatalog.features.search.SearchAnimeFragment
 import com.example.animecatalog.features.top_list.AnimeTopListFragment
 import dagger.BindsInstance
 import dagger.Component
@@ -16,6 +17,7 @@ interface AppComponent {
     fun inject(fragment: AnimeTopListFragment)
     fun inject(fragment: AnimeDetailsFragment)
     fun inject(fragment: FavoritesAnimeFragment)
+    fun inject(fragment: SearchAnimeFragment)
 
     @Component.Builder
     interface Builder {

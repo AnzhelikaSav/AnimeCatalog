@@ -35,7 +35,7 @@ class FavoritesAdapter(
                     .centerCrop()
                     .into(ivImage)
                 tvTitle.text = anime.title
-                root.setOnClickListener {
+                tvDelete.setOnClickListener {
                     onDeleteClick(anime.id)
                 }
             }

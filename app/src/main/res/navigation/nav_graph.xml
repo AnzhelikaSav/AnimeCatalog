@@ -33,5 +33,9 @@
     <fragment
         android:id="@+id/searchAnimeFragment"
         android:name="com.example.animecatalog.features.search.SearchAnimeFragment"
-        android:label="SearchAnimeFragment" />
+        android:label="SearchAnimeFragment" >
+        <action
+            android:id="@+id/action_searchAnimeFragment_to_animeDetailsFragment"
+            app:destination="@id/animeDetailsFragment" />
+    </fragment>
 </navigation>

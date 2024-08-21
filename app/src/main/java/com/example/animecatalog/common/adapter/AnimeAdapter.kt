@@ -1,4 +1,4 @@
-package com.example.animecatalog.features.top_list
+package com.example.animecatalog.common.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

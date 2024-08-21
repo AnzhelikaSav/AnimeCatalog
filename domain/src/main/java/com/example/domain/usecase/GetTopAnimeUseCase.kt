@@ -10,6 +10,6 @@ class GetTopAnimeUseCase @Inject constructor(
     private val repository: AnimeRepository
 ) {
     fun execute(): Flow<PagingData<Anime>> {
-        return repository.getTopAnimeFlow()
+        return repository.getTopAnime()
     }
 }

@@ -12,4 +12,10 @@ interface AnimeApi {
 
     @GET("anime/{id}")
     suspend fun getAnime(@Path("id") id: Int): AnimeObjectNetwork
+
+    @GET("anime")
+    suspend fun searchAnime(
+        @Query("letter") letter: String,
+        @Query("page") page: Int
+    ): AnimeListNetwork
 }

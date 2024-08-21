@@ -8,6 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.animecatalog.R
 import com.example.animecatalog.app.DiProvider
+import com.example.animecatalog.common.adapter.AnimeAdapter
 import com.example.animecatalog.common.recycler.SpaceItemDecoration
 import com.example.animecatalog.databinding.FragmentAnimeTopListBinding
 import com.example.animecatalog.navigation.Router
