@@ -9,14 +9,14 @@ private const val SEPARATOR = " "
 fun AnimeNetwork.toDomain(): Anime {
     return Anime(
         id = this.id,
-        imageUrl = this.images.jpg.imageUrl,
-        largeImageUrl = this.images.jpg.largeImageUrl,
-        title = this.titles.firstOrNull { it.type == "Default" }?.title ?:
-            this.titles.first { it.title.isNotEmpty() }.title,
-        score = this.score,
-        year = this.year,
-        genres = this.genres.map { it.name },
-        synopsis = this.synopsis
+        imageUrl = this.images?.jpg?.imageUrl ?: "",
+        largeImageUrl = this.images?.jpg?.largeImageUrl ?: "",
+        title = this.titles?.firstOrNull { it.type == "Default" }?.title ?:
+            this.titles?.first { it.title.isNotEmpty() }?.title ?: "",
+        score = this.score ?: 0.0,
+        year = this.year ?: 0,
+        genres = this.genres?.map { it.name } ?: emptyList(),
+        synopsis = this.synopsis ?: ""
     )
 }
 

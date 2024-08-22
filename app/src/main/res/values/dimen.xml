@@ -9,11 +9,14 @@
 
     <dimen name="height_16">16dp</dimen>
     <dimen name="height_32">32dp</dimen>
+    <dimen name="height_48">48dp</dimen>
     <dimen name="height_56">56dp</dimen>
     <dimen name="height_144">144dp</dimen>
     <dimen name="height_160">160dp</dimen>
     <dimen name="height_280">280dp</dimen>
 
+    <dimen name="width_32">32dp</dimen>
+    <dimen name="width_48">48dp</dimen>
     <dimen name="width_64">64dp</dimen>
     <dimen name="width_72">72dp</dimen>
     <dimen name="width_80">80dp</dimen>

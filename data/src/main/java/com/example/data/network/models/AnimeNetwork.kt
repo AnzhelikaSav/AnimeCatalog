@@ -6,15 +6,15 @@ data class AnimeNetwork(
     @SerializedName("mal_id")
     val id: Int,
     @SerializedName("images")
-    val images: ImageModel,
+    val images: ImageModel?,
     @SerializedName("titles")
-    val titles: List<TitleNetwork>,
+    val titles: List<TitleNetwork>?,
     @SerializedName("score")
-    val score: Double,
+    val score: Double?,
     @SerializedName("year")
-    val year: Int,
+    val year: Int?,
     @SerializedName("genres")
-    val genres: List<GenreNetwork>,
+    val genres: List<GenreNetwork>?,
     @SerializedName("synopsis")
-    val synopsis: String
+    val synopsis: String?
 )

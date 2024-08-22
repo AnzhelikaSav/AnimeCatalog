@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.animecatalog.R
 import com.example.animecatalog.app.DiProvider
 import com.example.animecatalog.common.adapter.AnimeAdapter
+import com.example.animecatalog.common.adapter.ProgressAdapter
 import com.example.animecatalog.common.recycler.SpaceItemDecoration
 import com.example.animecatalog.databinding.FragmentAnimeTopListBinding
 import com.example.animecatalog.navigation.Router
@@ -69,7 +70,9 @@ class AnimeTopListFragment : Fragment(R.layout.fragment_anime_top_list) {
         )
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         binding.recyclerView.addItemDecoration(decoration)
-        binding.recyclerView.adapter = adapter
+        binding.recyclerView.adapter = adapter.withLoadStateFooter(
+            footer = ProgressAdapter(adapter::retry)
+        )
 
         lifecycleScope.launch {
             viewModel.animeFlow.collectLatest { pagingData ->

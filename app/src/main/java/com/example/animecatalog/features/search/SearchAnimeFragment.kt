@@ -12,6 +12,7 @@ import com.example.animecatalog.app.DiProvider
 import com.example.animecatalog.common.recycler.SpaceItemDecoration
 import com.example.animecatalog.databinding.FragmentSearchAnimeBinding
 import com.example.animecatalog.common.adapter.AnimeAdapter
+import com.example.animecatalog.common.adapter.ProgressAdapter
 import com.example.animecatalog.navigation.Router
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -54,7 +55,9 @@ class SearchAnimeFragment: Fragment(R.layout.fragment_search_anime) {
         )
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         binding.recyclerView.addItemDecoration(decoration)
-        binding.recyclerView.adapter = adapter
+        binding.recyclerView.adapter = adapter.withLoadStateFooter(
+            footer = ProgressAdapter(adapter::retry)
+        )
 
         lifecycleScope.launch {
             viewModel.animeList.collectLatest { pagingData ->
