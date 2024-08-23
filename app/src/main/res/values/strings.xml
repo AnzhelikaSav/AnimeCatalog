@@ -3,4 +3,6 @@
     <string name="favorites">Favorites</string>
     <string name="search">Search</string>
     <string name="delete">Delete</string>
+    <string name="error_loading_data">Error loading data</string>
+    <string name="try_again">Try again</string>
 </resources>

@@ -2,6 +2,7 @@ package com.example.animecatalog.features.details
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
@@ -11,6 +12,7 @@ import com.example.animecatalog.app.DiProvider
 import com.example.animecatalog.databinding.FragmentAnimeDetailsBinding
 import com.example.animecatalog.navigation.Router
 import com.example.animecatalog.toRating
+import com.example.domain.RequestResult
 import com.example.domain.models.Anime
 import javax.inject.Inject
 
@@ -44,19 +46,29 @@ class AnimeDetailsFragment: Fragment(R.layout.fragment_anime_details) {
     }
 
     private fun setObservers() {
-        viewModel.anime.observe(viewLifecycleOwner) {
-            setInfo(it)
-        }
-
         viewModel.isFavorite.observe(viewLifecycleOwner) { isFavorite ->
             val resId = if (isFavorite) R.drawable.ic_favorite else R.drawable.ic_favorite_border
             binding.fabFavorite.setImageResource(resId)
+        }
+
+        viewModel.result.observe(viewLifecycleOwner) { result ->
+            binding.ivImage.isVisible = result is RequestResult.Success
+            binding.scrollView.isVisible = result is RequestResult.Success
+            binding.progressBar.isVisible = result == RequestResult.Loading
+            binding.llError.isVisible = result is RequestResult.Error
+
+            if (result is RequestResult.Success) {
+                setInfo(result.data)
+            }
         }
     }
 
     private fun setListeners() {
         binding.fabFavorite.setOnClickListener {
             addToFavoritesClick()
+        }
+        binding.btnRetry.setOnClickListener {
+            viewModel.onRetryClick()
         }
     }
 

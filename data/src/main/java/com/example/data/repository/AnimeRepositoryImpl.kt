@@ -7,6 +7,7 @@ import com.example.data.mappers.toDatabase
 import com.example.data.mappers.toDomain
 import com.example.data.network.api.AnimeApi
 import com.example.data.network.paging.createPager
+import com.example.domain.RequestResult
 import com.example.domain.models.Anime
 import com.example.domain.repository.AnimeRepository
 import kotlinx.coroutines.CoroutineDispatcher
@@ -36,8 +37,13 @@ class AnimeRepositoryImpl @Inject constructor(
             pagingData.map { it.toDomain() }
         }
 
-    override suspend fun getAnimeDetails(id: Int): Anime = withContext(dispatcher) {
-        animeApi.getAnime(id).data.toDomain()
+    override suspend fun getAnimeDetails(id: Int): RequestResult<Anime> = withContext(dispatcher) {
+        try {
+            val response = animeApi.getAnime(id).data.toDomain()
+            RequestResult.Success(response)
+        } catch (e: Exception) {
+            RequestResult.Error(e)
+        }
     }
 
     override fun getFavorites(): Flow<List<Anime>> =

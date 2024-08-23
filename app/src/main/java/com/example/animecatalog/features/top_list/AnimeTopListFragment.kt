@@ -2,9 +2,11 @@ package com.example.animecatalog.features.top_list
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.animecatalog.R
 import com.example.animecatalog.app.DiProvider
@@ -68,11 +70,20 @@ class AnimeTopListFragment : Fragment(R.layout.fragment_anime_top_list) {
                 R.dimen.padding_12
             )
         )
-        binding.recyclerView.layoutManager = LinearLayoutManager(context)
-        binding.recyclerView.addItemDecoration(decoration)
-        binding.recyclerView.adapter = adapter.withLoadStateFooter(
-            footer = ProgressAdapter(adapter::retry)
-        )
+
+        with(binding) {
+            recyclerView.layoutManager = LinearLayoutManager(context)
+            recyclerView.addItemDecoration(decoration)
+            recyclerView.adapter = adapter.withLoadStateFooter(
+                footer = ProgressAdapter(adapter::retry)
+            )
+            adapter.addLoadStateListener { state ->
+                progressBar.isVisible = state.refresh == LoadState.Loading
+                recyclerView.isVisible = state.refresh != LoadState.Loading
+                llError.isVisible = state.refresh is LoadState.Error
+            }
+            btnRetry.setOnClickListener { adapter.retry() }
+        }
 
         lifecycleScope.launch {
             viewModel.animeFlow.collectLatest { pagingData ->
