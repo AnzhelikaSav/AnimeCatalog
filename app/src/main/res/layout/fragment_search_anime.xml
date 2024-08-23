@@ -14,7 +14,6 @@
         android:layout_marginEnd="@dimen/padding_16"
         android:paddingStart="@dimen/padding_12"
         android:paddingEnd="@dimen/padding_12"
-        android:maxLength="1"
         android:background="@drawable/bg_search_edit_text"
         android:drawablePadding="@dimen/padding_12"
         android:drawableStart="@drawable/ic_search"

@@ -1,6 +1,5 @@
 package com.example.animecatalog.common.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
@@ -31,7 +30,6 @@ class ProgressAdapter(
         private val binding: ItemProgressBinding
     ): RecyclerView.ViewHolder(binding.root)  {
         fun bind(loadState: LoadState) {
-            Log.d("AAAA", loadState.toString())
             with(binding) {
                 progressBar.isVisible = loadState is LoadState.Loading
                 tvText.isVisible = loadState is LoadState.Error

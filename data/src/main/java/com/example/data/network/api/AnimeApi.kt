@@ -15,7 +15,7 @@ interface AnimeApi {
 
     @GET("anime")
     suspend fun searchAnime(
-        @Query("letter") letter: String,
+        @Query("q") q: String,
         @Query("page") page: Int
     ): AnimeListNetwork
 }
